@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+#include <string.h> 
+#include <stdio.h>
 #include <stdlib.h>
 #include <log4cxx/logger.h>
 #include <log4cxx/consoleappender.h>

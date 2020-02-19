@@ -36,8 +36,8 @@ ObjectOutputStream::ObjectOutputStream(OutputStreamPtr outputStream, Pool& p)
        objectHandle(0x7E0000),
        classDescriptions(new ClassDescriptionMap())
 {
-   char start[] = { 0xAC, 0xED, 0x00, 0x05 };
-   ByteBuffer buf(start, sizeof(start));
+   unsigned char start[] = { 0xAC, 0xED, 0x00, 0x05 };
+   ByteBuffer buf((char *)start, sizeof(start));
    os->write(buf, p);
 }
 
@@ -81,7 +81,7 @@ void ObjectOutputStream::writeObject(const MDC::Map& val, Pool& p) {
     //
     //  TC_OBJECT and the classDesc for java.util.Hashtable
     //
-    char prolog[] = {
+    unsigned char prolog[] = {
         0x72, 0x00, 0x13, 0x6A, 0x61, 0x76, 0x61, 
         0x2E, 0x75, 0x74, 0x69, 0x6C, 0x2E, 0x48, 0x61, 
         0x73, 0x68, 0x74, 0x61, 0x62, 0x6C, 0x65, 0x13, 
@@ -169,7 +169,7 @@ void ObjectOutputStream::writeNull(Pool& p) {
 
 void ObjectOutputStream::writeProlog(const char* className,
                         int classDescIncrement,
-                        char* classDesc,
+                        unsigned char* classDesc,
                         size_t len,
                         Pool& p) {
     ClassDescriptionMap::const_iterator match = classDescriptions->find(className);
@@ -187,7 +187,7 @@ void ObjectOutputStream::writeProlog(const char* className,
     } else {
         classDescriptions->insert(ClassDescriptionMap::value_type(className, objectHandle));
         writeByte(TC_OBJECT, p);
-        ByteBuffer buf(classDesc, len);
+        ByteBuffer buf((char *)classDesc, len);
         os->write(buf, p);
         objectHandle += (classDescIncrement + 1);
     }

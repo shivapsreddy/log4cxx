@@ -51,7 +51,7 @@ namespace log4cxx
                   void writeLong(log4cxx_time_t val, Pool& p);
                   void writeProlog(const char* className,
                         int classDescIncrement,
-                        char* bytes,
+                        unsigned char* bytes,
                         size_t len,
                         Pool& p);
                   void writeNull(Pool& p);
