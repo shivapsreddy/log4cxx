@@ -50,10 +50,10 @@ install(
 )
 
 # Install launch files.
-install(DIRECTORY
-  launch
-  DESTINATION share/${PROJECT_NAME}/
-)
+#install(DIRECTORY
+#  launch
+#  DESTINATION share/${PROJECT_NAME}/
+#)
 
 install(
   DIRECTORY src/main/include/log4cxx
