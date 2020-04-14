@@ -30,7 +30,7 @@ set(LOG4CXX_INCLUDE_DIRECTORIES
   ${PROJECT_SOURCE_DIR}/src/main/include
   ${PROJECT_SOURCE_DIR}/../apr-1.7.0/include
   ${PROJECT_SOURCE_DIR}/../apr-util-1.6.1/include
-  )
+)
 
 include_directories(${LOG4CXX_INCLUDE_DIRECTORIES})
 
@@ -68,17 +68,12 @@ install(
   RUNTIME DESTINATION bin
 )
 
-# Install launch files.
-#install(DIRECTORY
-#  launch
-#  DESTINATION share/${PROJECT_NAME}/
-#)
+install(
+  DIRECTORY src/main/include/log4cxx
+  DESTINATION include
+)
 
-#install(
-#  DIRECTORY src/main/include/log4cxx
-#  DESTINATION include
-#)
 # specific order: dependents before dependencies
-#ament_export_include_directories(include)
-#ament_export_libraries(${PROJECT_NAME})
+ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
 ament_package()
